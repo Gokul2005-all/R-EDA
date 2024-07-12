@@ -1,0 +1,77 @@
+---
+title: "Untitled"
+author: "STUDENT"
+date: "2024-07-12"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+#library
+library(tidyverse)
+library(skimr)
+library(GGally)
+```
+```{r}
+# 2. Understanding the Structure
+
+# View the structure of the dataset
+str(phone)
+
+# View the first few rows
+head(phone)
+
+# 3. Summary Statistics
+
+# Summary statistics
+summary(phone)
+
+# Detailed summary using skimr
+skim(phone)
+```
+```{r}
+# 4. Missing Values
+
+# Check for missing values
+missing_values <- sapply(phone, function(x) sum(is.na(x)))
+missing_values
+```
+## Including Plots
+
+
+
+```{r }
+# Histogram for a numeric variable
+ggplot(phone, aes(x =px_width)) + 
+  geom_histogram(binwidth = 10, fill = "brown", color = "black") +
+  theme_minimal()
+```
+```{r}
+# Histogram for a numeric variable
+ggplot(phone, aes(x =px_height )) + 
+  geom_histogram(binwidth =30, fill = "blue", color = "black") +
+  theme_minimal()
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+# Boxplot for a numeric variable grouped by a categorical variable
+ggplot(phone, aes(x = px_height, y =px_width)) + 
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal()
+```
+```{r}
+# Scatter plot to visualize relationships between two numeric variables
+ggplot(phone, aes(x =ram, y = mobile_wt)) + 
+  geom_point(color = "blue") +
+  theme_minimal()
+```
